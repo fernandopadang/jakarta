@@ -1,12 +1,8 @@
 import React from 'react';
-import { AppRegistry, View } from 'react-native';
-import { name as appName } from './app.json';
-import AlbumList from './packages/components/AlbumList';
+import {AppRegistry} from 'react-native';
+import {name as appName} from './app.json';
+import BaseLayout from './packages/layouts/base-layout';
 
-const App = () => (
-  <View>
-    <AlbumList />
-  </View>
-);
+const App = () => <BaseLayout />;
 
 AppRegistry.registerComponent(appName, () => App);

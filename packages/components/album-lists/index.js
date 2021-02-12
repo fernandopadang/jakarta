@@ -7,7 +7,7 @@ import {
   StyleSheet,
   Platform,
   SafeAreaView,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 
 const ENTRIES1 = [
@@ -37,16 +37,12 @@ const ENTRIES1 = [
     illustration: 'https://i.imgur.com/2nCt3Sbl.jpg',
   },
 ];
-const { width: screenWidth } = Dimensions.get('window');
+const {width: screenWidth} = Dimensions.get('window');
 
-const MyCarousel = props => {
+const MyCarousel = (props) => {
   const [entries, setEntries] = useState([]);
   const [activeSlide, setActiveSlide] = useState(0);
   const carouselRef = useRef(null);
-
-  const goForward = () => {
-    carouselRef.current.snapToNext();
-  };
 
   useEffect(() => {
     setEntries(ENTRIES1);
@@ -70,18 +66,12 @@ const MyCarousel = props => {
   };
 
   const CaraoselPagination = () => {
-    return(
+    return (
       <Pagination
         dotsLength={entries.length}
         activeDotIndex={activeSlide}
-        containerStyle={{ backgroundColor: '#FFFFFF' }}
-        dotStyle={{
-            width: 10,
-            height: 10,
-            borderRadius: 5,
-            marginHorizontal: 8,
-            backgroundColor: '#000000'
-        }}
+        containerStyle={styles.paginationContainer}
+        dotStyle={styles.paginationDotStyle}
         inactiveDotOpacity={0.4}
         inactiveDotScale={0.6}
         delayPressInDot={0}
@@ -105,9 +95,9 @@ const MyCarousel = props => {
             onSnapToItem={(index) => setActiveSlide(index)}
           />
           {CaraoselPagination()}
-      </View>
-    </ScrollView>
-  </SafeAreaView>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -116,7 +106,7 @@ export default MyCarousel;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 16
+    marginTop: 16,
   },
   item: {
     width: screenWidth - 60,
@@ -138,6 +128,16 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 10,
     left: 8,
-    color: '#FFFFFF'
-  }
+    color: '#FFFFFF',
+  },
+  paginationDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    marginHorizontal: 8,
+    backgroundColor: '#000000',
+  },
+  paginationContainer: {
+    backgroundColor: '#FFFFFF',
+  },
 });
